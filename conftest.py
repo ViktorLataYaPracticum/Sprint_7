@@ -12,7 +12,11 @@ def base_url():
 
 @pytest.fixture
 def create_courier():
-    login, password, _ = register_new_courier_and_return_login_password()
+    courier_data = register_new_courier_and_return_login_password()
+
+    assert courier_data, "Курьер не был создан через helper"
+
+    login, password, _ = courier_data
 
     login_payload = {
         "login": login,
@@ -28,5 +32,4 @@ def create_courier():
         "id": courier_id
     }
 
-    # удаляем курьера после теста
     requests.delete(f"{BASE_URL}/courier/{courier_id}")

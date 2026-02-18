@@ -4,11 +4,11 @@ import string
 
 BASE_URL = "https://qa-scooter.praktikum-services.ru/api/v1"
 
+def generate_random_string(length):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for _ in range(length))
 
 def register_new_courier_and_return_login_password():
-    def generate_random_string(length):
-        letters = string.ascii_lowercase
-        return ''.join(random.choice(letters) for _ in range(length))
 
     login = generate_random_string(10)
     password = generate_random_string(10)
