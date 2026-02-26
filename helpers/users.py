@@ -1,8 +1,7 @@
 import requests
 import random
 import string
-
-BASE_URL = "https://qa-scooter.praktikum-services.ru/api/v1"
+from urls import Urls
 
 def generate_random_string(length):
     letters = string.ascii_lowercase
@@ -20,7 +19,7 @@ def register_new_courier_and_return_login_password():
         "firstName": first_name
     }
 
-    response = requests.post(f"{BASE_URL}/courier", data=payload)
+    response = requests.post(f"{Urls.BASE_URL}/courier", data=payload)
 
     if response.status_code == 201:
         return [login, password, first_name]
